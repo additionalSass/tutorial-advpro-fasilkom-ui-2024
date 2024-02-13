@@ -1,2 +1,2 @@
 rootProject.name = "eshop"
-System.setProperty("sonar.gradle.skipCompile", "true")git 
+System.setProperty("sonar.gradle.skipCompile", "true")
