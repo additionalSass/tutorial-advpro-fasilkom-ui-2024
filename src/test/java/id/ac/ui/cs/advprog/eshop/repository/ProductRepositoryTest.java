@@ -115,7 +115,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void editByIDTest() {
+    void WhenIDExists_ForEditByIDTest() {
         Product product1 = new Product();
         String sProductID1 = "eb558e9f-1c39-460e-8860-71af6af63bd6";
         product1.setProductID(sProductID1);
@@ -147,6 +147,35 @@ class ProductRepositoryTest {
         assertEquals(sProductID1,checkedProduct.getProductID());
         assertEquals(newName, checkedProduct.getProductName());
         assertEquals(newQuantity,checkedProduct.getProductQuantity());
+    }
+
+    @Test
+    void whenIDDoesNotExist_ForEditByIDTest() {
+        Product product1 = new Product();
+        String sProductID1 = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        product1.setProductID(sProductID1);
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(100);
+        productRepository.create(product1);
+
+        Product product2 = new Product();
+        String sProductID2 = "a0f9de46-90b1-437d-a0bf-d0821dde9096";
+        product2.setProductID(sProductID2);
+        product2.setProductName("Sampo Cap Usep");
+        product2.setProductQuantity(50);
+        productRepository.create(product2);
+
+        Product editResult = new Product();
+        String newName = "Nama Bebas";
+        int newQuantity = 242;
+        editResult.setProductID("a0f9de46-90b1-157d-a0bf-d0821dde1196");
+        editResult.setProductName(newName);
+        editResult.setProductQuantity(newQuantity);
+        assertNotEquals(product1.getProductName(),editResult.getProductName());
+        assertNotEquals(product1.getProductQuantity(),editResult.getProductQuantity());
+
+        Product kr = productRepository.edit("bc39de46-90b1-157d-a0bf-d0821dde1196",editResult);
+        assertNull(kr);
     }
 
 
