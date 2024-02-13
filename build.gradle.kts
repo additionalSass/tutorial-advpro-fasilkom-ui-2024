@@ -17,6 +17,7 @@ sonar {
         property("sonar.projectKey", "additionalSass_tutorial-advpro-fasilkom-ui-2024")
         property("sonar.organization", "additionalsass")
         property("sonar.host.url", "https://sonarcloud.io")
+        property("sonar.gradle.skipCompile","true")
     }
 }
 
