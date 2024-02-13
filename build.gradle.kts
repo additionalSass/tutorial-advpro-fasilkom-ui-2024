@@ -13,7 +13,7 @@ java {
     sourceCompatibility = JavaVersion.VERSION_21
 }
 
-sonar {
+sonarqube {
     properties {
         property("sonar.projectKey", "additionalSass_tutorial-advpro-fasilkom-ui-2024")
         property("sonar.organization", "additionalsass")
