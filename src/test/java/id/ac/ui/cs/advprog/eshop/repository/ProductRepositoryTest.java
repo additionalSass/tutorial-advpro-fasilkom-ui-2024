@@ -149,5 +149,5 @@ class ProductRepositoryTest {
         assertEquals(newQuantity,checkedProduct.getProductQuantity());
     }
 
-    
+
 }
