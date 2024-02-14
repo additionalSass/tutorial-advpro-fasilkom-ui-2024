@@ -15,23 +15,25 @@ class ProductRepositoryTest {
     @InjectMocks
     ProductRepository productRepository;
 
+    Product mockProduct;
+
     @BeforeEach
     void setUp() {
+        mockProduct = new Product();
+        mockProduct.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
+        mockProduct.setProductName("Sampo Cap Bambang");
+        mockProduct.setProductQuantity(100);
     }
 
     @Test
     void testCreateAndFind() {
-        Product product = new Product();
-        product.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product.setProductName("Sampo Cap Bambang");
-        product.setProductQuantity(100);
-        productRepository.create(product);
+        productRepository.create(mockProduct);
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
         Product savedProduct = productIterator.next();
-        assertEquals(product.getProductID(), savedProduct.getProductID());
-        assertEquals(product.getProductName(), savedProduct.getProductName());
-        assertEquals(product.getProductQuantity(), savedProduct.getProductQuantity());
+        assertEquals(mockProduct.getProductID(), savedProduct.getProductID());
+        assertEquals(mockProduct.getProductName(), savedProduct.getProductName());
+        assertEquals(mockProduct.getProductQuantity(), savedProduct.getProductQuantity());
     }
 
     @Test
@@ -42,12 +44,7 @@ class ProductRepositoryTest {
 
     @Test
     void testFindAllIfMoreThanOneProduct() {
-        Product product1 = new Product();
-        product1.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
-        productRepository.create(product1);
-
+        productRepository.create(mockProduct);
         Product product2 = new Product();
         product2.setProductID("a0f9de46-90b1-437d-a0bf-d0821dde9096");
         product2.setProductName("Sampo Cap Usep");
@@ -57,7 +54,7 @@ class ProductRepositoryTest {
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
         Product savedProduct = productIterator.next();
-        assertEquals(product1.getProductID(), savedProduct.getProductID());
+        assertEquals(mockProduct.getProductID(), savedProduct.getProductID());
         savedProduct = productIterator.next();
         assertEquals(product2.getProductID(), savedProduct.getProductID());
         assertFalse(productIterator.hasNext());
@@ -65,12 +62,7 @@ class ProductRepositoryTest {
 
     @Test
     void findByIDTest() {
-        Product product1 = new Product();
-        String sProductID1 = "eb558e9f-1c39-460e-8860-71af6af63bd6";
-        product1.setProductID(sProductID1);
-        product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
-        productRepository.create(product1);
+        productRepository.create(mockProduct);
 
         Product product2 = new Product();
         String sProductID2 = "a0f9de46-90b1-437d-a0bf-d0821dde9096";
@@ -80,9 +72,9 @@ class ProductRepositoryTest {
         productRepository.create(product2);
 
         String wrongID = "b3f9de46-90b1-437d-a0bf-d0822dgq9096";
-        Product searchedProduct1 = productRepository.searchByID(sProductID1);
+        Product searchedProduct1 = productRepository.searchByID(mockProduct.getProductID());
         assertNotNull(searchedProduct1);
-        assertEquals(searchedProduct1.getProductID(),product1.getProductID());
+        assertEquals(searchedProduct1.getProductID(),mockProduct.getProductID());
         Product searchedProduct2 = productRepository.searchByID(sProductID2);
         assertNotNull(searchedProduct2);
         assertEquals(searchedProduct2.getProductID(),product2.getProductID());
@@ -92,11 +84,7 @@ class ProductRepositoryTest {
 
     @Test
     void removeByIDTest() {
-        Product product1 = new Product();
-        product1.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
-        product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
-        productRepository.create(product1);
+        productRepository.create(mockProduct);
 
         Product product2 = new Product();
         String sProductID2 = "a0f9de46-90b1-437d-a0bf-d0821dde9096";
@@ -116,12 +104,8 @@ class ProductRepositoryTest {
 
     @Test
     void WhenIDExists_ForEditByIDTest() {
-        Product product1 = new Product();
-        String sProductID1 = "eb558e9f-1c39-460e-8860-71af6af63bd6";
-        product1.setProductID(sProductID1);
-        product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
-        productRepository.create(product1);
+        String sProductID1 = mockProduct.getProductID();
+        productRepository.create(mockProduct);
 
         Product product2 = new Product();
         String sProductID2 = "a0f9de46-90b1-437d-a0bf-d0821dde9096";
@@ -136,8 +120,8 @@ class ProductRepositoryTest {
         editResult.setProductID(sProductID1);
         editResult.setProductName(newName);
         editResult.setProductQuantity(newQuantity);
-        assertNotEquals(product1.getProductName(),editResult.getProductName());
-        assertNotEquals(product1.getProductQuantity(),editResult.getProductQuantity());
+        assertNotEquals(mockProduct.getProductName(),editResult.getProductName());
+        assertNotEquals(mockProduct.getProductQuantity(),editResult.getProductQuantity());
 
         Product kr = productRepository.edit(sProductID1,editResult);
         assertNotNull(kr);
@@ -151,12 +135,7 @@ class ProductRepositoryTest {
 
     @Test
     void whenIDDoesNotExist_ForEditByIDTest() {
-        Product product1 = new Product();
-        String sProductID1 = "eb558e9f-1c39-460e-8860-71af6af63bd6";
-        product1.setProductID(sProductID1);
-        product1.setProductName("Sampo Cap Bambang");
-        product1.setProductQuantity(100);
-        productRepository.create(product1);
+        productRepository.create(mockProduct);
 
         Product product2 = new Product();
         String sProductID2 = "a0f9de46-90b1-437d-a0bf-d0821dde9096";
@@ -171,9 +150,8 @@ class ProductRepositoryTest {
         editResult.setProductID("a0f9de46-90b1-157d-a0bf-d0821dde1196");
         editResult.setProductName(newName);
         editResult.setProductQuantity(newQuantity);
-        assertNotEquals(product1.getProductName(),editResult.getProductName());
-        assertNotEquals(product1.getProductQuantity(),editResult.getProductQuantity());
-
+        assertNotEquals(mockProduct.getProductName(),editResult.getProductName());
+        assertNotEquals(mockProduct.getProductQuantity(),editResult.getProductQuantity());
         Product kr = productRepository.edit("bc39de46-90b1-157d-a0bf-d0821dde1196",editResult);
         assertNull(kr);
     }
