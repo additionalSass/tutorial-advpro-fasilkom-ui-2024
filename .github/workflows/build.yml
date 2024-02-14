@@ -1,6 +1,6 @@
 name: SonarCloud Scan
 
-#run the sonarcloud scan on every push to any branch 
+#run the sonarcloud scan on every push to any branch
 on:
   push:
   pull_request:
