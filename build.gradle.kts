@@ -89,4 +89,10 @@ tasks.jacocoTestReport {
         html.required = true
         xml.required = true
     }
+    afterEvaluate {
+        classDirectories = files(classDirectories.files.collect {
+            fileTree(dir: it,
+                    exclude: 'src/main/java/**/EshopApplication.*')
+        })
+    }
 }
