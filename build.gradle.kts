@@ -89,11 +89,10 @@ tasks.jacocoTestReport {
         html.required = true
         xml.required = true
     }
-    afterEvaluate {
-        classDirectories.setFrom(files(classDirectories.files.map {
-            fileTree(it){
-                exclude("**/EshopApplication.*")
-            }
-        }))
+
+    classDirectories.setFrom(files(classDirectories.files.map {
+        fileTree(it){
+            exclude("**/EshopApplication.*")
+        }
     }
 }
