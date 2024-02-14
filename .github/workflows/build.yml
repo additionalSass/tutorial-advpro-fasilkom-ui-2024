@@ -43,4 +43,3 @@ jobs:
           args: >
             -Dsonar.organization=additionalsass
             -Dsonar.projectKey=additionalSass_tutorial-advpro-fasilkom-ui-2024
-            -Dsonar.host.url="https://sonarcloud.io"
