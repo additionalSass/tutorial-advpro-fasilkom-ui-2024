@@ -94,5 +94,5 @@ tasks.jacocoTestReport {
         fileTree(it){
             exclude("**/EshopApplication.*")
         }
-    }
+    }))
 }
