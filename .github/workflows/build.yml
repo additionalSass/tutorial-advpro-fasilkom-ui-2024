@@ -41,6 +41,6 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.organization = "additionalsass"
-            -Dsonar.projectKey = "additionalSass_tutorial-advpro-fasilkom-ui-2024"
-            -Dsonar.host.url = "https://sonarcloud.io"
+            -Dsonar.organization=additionalsass
+            -Dsonar.projectKey=additionalSass_tutorial-advpro-fasilkom-ui-2024
+            -Dsonar.host.url="https://sonarcloud.io"
