@@ -92,7 +92,7 @@ tasks.jacocoTestReport {
     afterEvaluate {
         classDirectories.setFrom(files(classDirectories.files.map {
             fileTree(it){
-                exclude('src/main/java/**/EshopApplication.*')
+                exclude('**/EshopApplication.*')
             }
         }))
     }
