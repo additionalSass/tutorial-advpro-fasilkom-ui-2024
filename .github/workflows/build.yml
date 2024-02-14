@@ -39,13 +39,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        with:
-          args: >
-            -Dsonar.organization=additionalsass
-            -Dsonar.projectKey=additionalSass_tutorial-advpro-fasilkom-ui-2024
-            -Dsonar.sources=src/main/java
-            -Dsonar.java.binaries=build/classes/java/main
-            -Dsonar.java.test.binaries=build/classes/java/test
-            -Dsonar.scm.exclusions.disabled=true
-            -Dsonar.language=java
-            -Dsonar.coverage.jacoco.xmlReportPaths=build/reports/jacoco/test/jacocoTestReport.xml
