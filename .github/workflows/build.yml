@@ -1,7 +1,8 @@
 name: SonarCloud Scan
+
+#run the sonarcloud scan on every push to any branch 
 on:
   push:
-    branches: ["main", "module-2-exercise"]
   pull_request:
     types: [opened, synchronize, reopened]
 jobs:
