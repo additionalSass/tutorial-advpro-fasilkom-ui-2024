@@ -32,13 +32,31 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testCreate() {
+    void testWhenNoIdGiven_Create() {
         Product product1 = new Product();
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(200);
         when(productRepository.create(any(Product.class))).thenReturn(product1);
 
         Product savedProduct = productService.create(product1);
+        assertNotNull(savedProduct.getProductID());
+        assertEquals("Sampo Cap Bambang", savedProduct.getProductName());
+        assertEquals(200,savedProduct.getProductQuantity());
+        verify(productRepository).create(product1);
+    }
+
+    @Test
+    void testWhenSomeIdGiven_Create() {
+        Product product1 = new Product();
+        String givenId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
+        product1.setProductID(givenId);
+        product1.setProductName("Sampo Cap Bambang");
+        product1.setProductQuantity(200);
+        when(productRepository.create(any(Product.class))).thenReturn(product1);
+
+        Product savedProduct = productService.create(product1);
+        assertNotNull(savedProduct.getProductID());
+        assertEquals(givenId,savedProduct.getProductID());
         assertEquals("Sampo Cap Bambang", savedProduct.getProductName());
         assertEquals(200,savedProduct.getProductQuantity());
         verify(productRepository).create(product1);
