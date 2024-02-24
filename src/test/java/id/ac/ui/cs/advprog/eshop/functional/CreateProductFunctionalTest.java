@@ -29,25 +29,25 @@ class CreateProductFunctionalTest {
     private String baseUrl;
 
     @BeforeEach
-    void setupTest() {
+    public void setupTest() {
         baseUrl = String.format("%s:%d" + "/product/create", testBaseUrl, serverPort);
     }
     @Test
-    void createPageTitle_isCorrect(ChromeDriver driver) throws Exception {
+    public void createPageTitle_isCorrect(ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
         String pageTitle = driver.getTitle();
 
         assertEquals("Create New Product", pageTitle);
     }
-
-    void createPageHeading_isCorrect(ChromeDriver driver) throws Exception {
+    @Test
+    public void createPageHeading_isCorrect(ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
         String pageHeading = driver.findElement(By.tagName("h3")).getText();
         assertEquals("Create New Product", pageHeading);
     }
 
     @Test
-    void test_createProduct(ChromeDriver driver) throws Exception {
+    public void test_createProduct(ChromeDriver driver) throws Exception {
         driver.get(baseUrl);
         driver.findElement(By.id("nameInput")).sendKeys("Functional Test Create");
         driver.findElement(By.id("quantityInput")).sendKeys("20");

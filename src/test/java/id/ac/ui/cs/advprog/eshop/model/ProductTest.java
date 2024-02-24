@@ -8,7 +8,7 @@ class ProductTest {
     Product product;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         this.product = new Product();
         this.product.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         this.product.setProductName("Sampo Cap Bambang");
@@ -16,17 +16,17 @@ class ProductTest {
     }
 
     @Test
-    void testGetProductID() {
+    public void testGetProductID() {
         assertEquals("eb558e9f-1c39-460e-8860-71af6af63bd6", this.product.getProductID());
     }
 
     @Test
-    void testGetProductName() {
+    public void testGetProductName() {
         assertEquals("Sampo Cap Bambang", this.product.getProductName());
     }
 
     @Test
-    void testGetProductQuantity() {
+    public void testGetProductQuantity() {
         assertEquals(100, this.product.getProductQuantity());
     }
 }

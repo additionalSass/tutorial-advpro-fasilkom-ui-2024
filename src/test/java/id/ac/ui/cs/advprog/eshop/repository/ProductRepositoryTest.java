@@ -18,7 +18,7 @@ class ProductRepositoryTest {
     Product mockProduct;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         mockProduct = new Product();
         mockProduct.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         mockProduct.setProductName("Sampo Cap Bambang");
@@ -26,7 +26,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void testCreateAndFind() {
+    public void testCreateAndFind() {
         productRepository.create(mockProduct);
         Iterator<Product> productIterator = productRepository.findAll();
         assertTrue(productIterator.hasNext());
@@ -37,13 +37,13 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void testFindAllIfEmpty() {
+    public void testFindAllIfEmpty() {
         Iterator<Product> productIterator = productRepository.findAll();
         assertFalse(productIterator.hasNext());
     }
 
     @Test
-    void testFindAllIfMoreThanOneProduct() {
+    public void testFindAllIfMoreThanOneProduct() {
         productRepository.create(mockProduct);
         Product product2 = new Product();
         product2.setProductID("a0f9de46-90b1-437d-a0bf-d0821dde9096");
@@ -61,7 +61,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void findByIDTest() {
+    public void findByIDTest() {
         productRepository.create(mockProduct);
 
         Product product2 = new Product();
@@ -83,7 +83,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void removeByIDTest() {
+    public void removeByIDTest() {
         productRepository.create(mockProduct);
 
         Product product2 = new Product();
@@ -103,7 +103,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void WhenIDExists_ForEditByIDTest() {
+    public void WhenIDExists_ForEditByIDTest() {
         String sProductID1 = mockProduct.getProductID();
         productRepository.create(mockProduct);
 
@@ -134,7 +134,7 @@ class ProductRepositoryTest {
     }
 
     @Test
-    void whenIDDoesNotExist_ForEditByIDTest() {
+    public void whenIDDoesNotExist_ForEditByIDTest() {
         productRepository.create(mockProduct);
 
         Product product2 = new Product();

@@ -15,7 +15,7 @@ class HomePageControllerTest {
     private MockMvc mockController;
 
     @Test
-    void whenAccessHome_thenReturnsHomePageView() throws Exception {
+    public void whenAccessHome_thenReturnsHomePageView() throws Exception {
         mockController.perform(get("/")).andExpect(status().isOk()).andExpect(view().name("homepage"));
     }
 }

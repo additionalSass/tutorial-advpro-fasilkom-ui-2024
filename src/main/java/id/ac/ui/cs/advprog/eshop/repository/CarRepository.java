@@ -8,8 +8,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Repository
-public class CarRepository {
-    static int id = 0;
+public class CarRepository implements CarRepoInterface {
     private List<Car> carData = new ArrayList<>();
 
     public Car create(Car car) {
@@ -26,7 +25,9 @@ public class CarRepository {
     }
 
     public Car findById(String id) {
-        for (Car car : carData) {
+        Iterator<Car> theIterator = findAll();
+        while (theIterator.hasNext()) {
+            Car car = theIterator.next();
             if (car.getCarId().equals(id)) {
                 return car;
             }

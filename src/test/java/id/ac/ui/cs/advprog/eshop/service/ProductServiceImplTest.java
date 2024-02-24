@@ -27,12 +27,12 @@ class ProductServiceImplTest {
     ProductServiceImpl productService;
 
     @BeforeEach
-    void setUp() {
+    public void setUp() {
         MockitoAnnotations.openMocks(this);
     }
 
     @Test
-    void testWhenNoIdGiven_Create() {
+    public void testWhenNoIdGiven_Create() {
         Product product1 = new Product();
         product1.setProductName("Sampo Cap Bambang");
         product1.setProductQuantity(200);
@@ -46,7 +46,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testWhenSomeIdGiven_Create() {
+    public void testWhenSomeIdGiven_Create() {
         Product product1 = new Product();
         String givenId = "eb558e9f-1c39-460e-8860-71af6af63bd6";
         product1.setProductID(givenId);
@@ -63,7 +63,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testWhenFindAll_thenReturnProductRepo() {
+    public void testWhenFindAll_thenReturnProductRepo() {
         Product product1 = new Product();
         product1.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
@@ -83,7 +83,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testSearchByID() {
+    public void testSearchByID() {
         Product product1 = new Product();
         product1.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         product1.setProductName("Sampo Cap Bambang");
@@ -111,7 +111,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testEditProduct() {
+    public void testEditProduct() {
         Product oriProduct = new Product();
         oriProduct.setProductID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         oriProduct.setProductName("Sampo Cap Bambang");
@@ -133,7 +133,7 @@ class ProductServiceImplTest {
     }
 
     @Test
-    void testRemoveByIdOfProduct() {
+    public void testRemoveByIdOfProduct() {
         when(productRepository.removeByID("eb558e9f-1c39-460e-8860-71af6af63bd6")).thenReturn(true);
         boolean testedResult = productService.removeByID("eb558e9f-1c39-460e-8860-71af6af63bd6");
         assertTrue(testedResult);

@@ -25,11 +25,11 @@ class HomePageFunctionalTest {
     private String baseUrl;
 
     @BeforeEach
-    void setupTest() {
+    public void setupTest() {
         baseUrl = String.format("%s:%d", testBaseUrl, serverPort);
     }
     @Test
-    void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
+    public void pageTitle_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
         driver.get(baseUrl);
         String pageTitle = driver.getTitle();
@@ -38,7 +38,7 @@ class HomePageFunctionalTest {
         assertEquals("ADV Shop", pageTitle);
     }
     @Test
-    void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
+    public void welcomeMessage_homePage_isCorrect(ChromeDriver driver) throws Exception {
         // Exercise
         driver.get(baseUrl);
         String welcomeMessage = driver.findElement(By.tagName("h3")).getText();

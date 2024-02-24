@@ -24,7 +24,7 @@
 
         <div class="mb-4">
             <label for="carQuantity" class="block text-sm font-medium text-gray-600">Car Quantity</label>
-            <input th:field="*{carQuantity}" type="number" id="carQuantity" name="carQuantity" th:value="${car.carQuantity}" class="mt-1 p-2 w-full border rounded-md">
+            <input th:field="*{carQuantity}" type="number" min="0" id="carQuantity" name="carQuantity" th:value="${car.carQuantity}" class="mt-1 p-2 w-full border rounded-md">
         </div>
 
         <div class="flex justify-end">
