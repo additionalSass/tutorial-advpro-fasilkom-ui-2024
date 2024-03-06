@@ -62,13 +62,13 @@ class ProductControllerTest {
     @Test
     public void whenEditProductPageWithValidId_thenReturnsEditProductView() throws Exception {
         given(productService.searchById(mockProduct.getProductId())).willReturn(mockProduct);
-        mockController.perform(get("/product/edit/{productID}", mockProduct.getProductId())).andExpect(status().isOk()).andExpect(model().attributeExists("product")).andExpect(view().name("editproduct"));
+        mockController.perform(get("/product/edit/{productId}", mockProduct.getProductId())).andExpect(status().isOk()).andExpect(model().attributeExists("product")).andExpect(view().name("editproduct"));
     }
 
     @Test
     public void whenEditProductPageWithInvalidId_thenRedirectsToProductList() throws Exception {
         given(productService.searchById("invalid-id")).willReturn(null);
-        mockController.perform(get("/product/edit/{productID}", "invalid-id")).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:list"));
+        mockController.perform(get("/product/edit/{productId}", "invalid-id")).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:list"));
     }
 
     @Test
