@@ -5,9 +5,9 @@ import lombok.Getter;
 
 @Getter
 public enum OrderStatus {
-    WAITING_PAYMENT("WAITING_PAYMENT");
-    FAILED("FAILED");
-    SUCCESS("SUCCESS");
+    WAITING_PAYMENT("WAITING_PAYMENT"),
+    FAILED("FAILED"),
+    SUCCESS("SUCCESS"),
     CANCELLED("CANCELLED");
 
     private final String value;
