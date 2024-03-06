@@ -34,7 +34,7 @@ class ProductControllerTest {
     @BeforeEach
     public void setUp() {
         mockProduct = new Product();
-        mockProduct.setProductID("a0f9de46-90b1-157d-a0bf-d0821dde1196");
+        mockProduct.setProductId("a0f9de46-90b1-157d-a0bf-d0821dde1196");
         mockProduct.setProductName("Test Product");
         mockProduct.setProductQuantity(29);
 
@@ -61,25 +61,25 @@ class ProductControllerTest {
 
     @Test
     public void whenEditProductPageWithValidId_thenReturnsEditProductView() throws Exception {
-        given(productService.searchByID(mockProduct.getProductID())).willReturn(mockProduct);
-        mockController.perform(get("/product/edit/{productID}", mockProduct.getProductID())).andExpect(status().isOk()).andExpect(model().attributeExists("product")).andExpect(view().name("editproduct"));
+        given(productService.searchById(mockProduct.getProductId())).willReturn(mockProduct);
+        mockController.perform(get("/product/edit/{productID}", mockProduct.getProductId())).andExpect(status().isOk()).andExpect(model().attributeExists("product")).andExpect(view().name("editproduct"));
     }
 
     @Test
     public void whenEditProductPageWithInvalidId_thenRedirectsToProductList() throws Exception {
-        given(productService.searchByID("invalid-id")).willReturn(null);
+        given(productService.searchById("invalid-id")).willReturn(null);
         mockController.perform(get("/product/edit/{productID}", "invalid-id")).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:list"));
     }
 
     @Test
     public void whenEditProductPost_thenProductIsUpdated() throws Exception {
-        mockController.perform(post("/product/edit/{productID}", mockProduct.getProductID()).flashAttr("product", mockProduct)).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/product/list"));
-        verify(productService).edit(eq(mockProduct.getProductID()), any(Product.class));
+        mockController.perform(post("/product/edit/{productID}", mockProduct.getProductId()).flashAttr("product", mockProduct)).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/product/list"));
+        verify(productService).edit(eq(mockProduct.getProductId()), any(Product.class));
     }
 
     @Test
     public void whenDeleteProduct_thenProductIsRemoved() throws Exception {
-        mockController.perform(get("/product/delete/{productID}", mockProduct.getProductID())).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/product/list"));
-        verify(productService).removeByID(mockProduct.getProductID());
+        mockController.perform(get("/product/delete/{productID}", mockProduct.getProductId())).andExpect(status().is3xxRedirection()).andExpect(view().name("redirect:/product/list"));
+        verify(productService).removeById(mockProduct.getProductId());
     }
 }

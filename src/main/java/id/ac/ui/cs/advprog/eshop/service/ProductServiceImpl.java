@@ -34,8 +34,8 @@ public class ProductServiceImpl implements ProductService {
         return allProduct;
     }
     @Override
-    public Product searchByID(String sProductID) {
-        return productRepository.searchByID(sProductID);
+    public Product searchById(String sProductID) {
+        return productRepository.searchById(sProductID);
     }
 
     @Override
@@ -44,7 +44,7 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Override
-    public boolean removeByID(String sProductID) {
-        return productRepository.removeByID(sProductID);
+    public boolean removeById(String sProductID) {
+        return productRepository.removeById(sProductID);
     }
 }

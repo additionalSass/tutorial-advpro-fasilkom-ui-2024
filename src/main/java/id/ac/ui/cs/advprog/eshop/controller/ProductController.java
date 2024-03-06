@@ -42,7 +42,7 @@ public class ProductController {
 
     @GetMapping("/edit/{productID}")
     public String editProductPage(@PathVariable String productID, Model model) {
-        Product product = service.searchByID(productID);
+        Product product = service.searchById(productID);
         if (product != null) {
             model.addAttribute("product",product);
             return "editproduct";
@@ -52,7 +52,7 @@ public class ProductController {
     }
     @GetMapping("/delete/{productID}")
     public String deleteProductPost(@PathVariable("productID") String productID, Model model) {
-        service.removeByID(productID);
+        service.removeById(productID);
         return "redirect:/product/list";
     }
 

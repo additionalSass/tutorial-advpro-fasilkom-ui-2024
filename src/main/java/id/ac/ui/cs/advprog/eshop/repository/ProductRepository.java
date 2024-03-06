@@ -20,11 +20,11 @@ public class ProductRepository {
         return productData.iterator();
     }
 
-    public Product searchByID(String sProductID) {
+    public Product searchById(String sProductID) {
         Iterator<Product> productIterator = findAll();
         while (productIterator.hasNext()) {
             Product product = productIterator.next();
-            if (product.getProductID().equals(sProductID)) {
+            if (product.getProductId().equals(sProductID)) {
                 return product;
             }
         }
@@ -34,7 +34,7 @@ public class ProductRepository {
         Iterator<Product> productIterator = findAll();
         while (productIterator.hasNext()) {
             Product product = productIterator.next();
-            if (product.getProductID().equals(sProductID)) {
+            if (product.getProductId().equals(sProductID)) {
                 product.setProductName(newProduct.getProductName());
                 product.setProductQuantity(newProduct.getProductQuantity());
                 return product;
@@ -42,7 +42,7 @@ public class ProductRepository {
         }
         return null;
     }
-    public boolean removeByID(String sProductID) {
-        return productData.removeIf(product -> product.getProductID().equals(sProductID));
+    public boolean removeById(String sProductID) {
+        return productData.removeIf(product -> product.getProductId().equals(sProductID));
     }
 }
