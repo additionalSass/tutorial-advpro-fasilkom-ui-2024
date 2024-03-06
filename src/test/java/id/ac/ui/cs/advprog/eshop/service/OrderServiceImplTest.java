@@ -21,7 +21,7 @@ import static org.mockito.Mockito.*;
 @ExtendWith(MockitoExtension.class)
 class OrderServiceImplTest {
     @InjectMocks
-    OrderService orderService;
+    OrderService orderService = new OrderServiceImpl();
     @Mock
     OrderRepository orderRepository;
     List<Order> orders;
@@ -83,7 +83,7 @@ class OrderServiceImplTest {
     }
     @Test
     void testUpdateStatusInvalidOrderId() {
-        doReturn(null).when(orderRepository).findById("");
+        doReturn(null).when(orderRepository).findById("zczc");
         assertThrows(NoSuchElementException.class, () -> orderService.updateStatus("zczc", OrderStatus.SUCCESS.getValue()));
         verify(orderRepository, times(0)).save(any(Order.class));
     }
